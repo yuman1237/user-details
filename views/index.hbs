@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" type="text/css" href="sass/nav.css"/>
+
+    <link rel="stylesheet" type="text/css" href="sass/index.css"/>
+    
+</head>
+<body>
+    <nav>
+        <div  class="container">
+        <ul>
+            <li>  Home</li>
+            <li>About</li>
+            <li>Options</li>
+            <li>Logout </li>
+
+        </ul>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+             <form action="/api/login" method="POST">
+             <h1>Login</h1>
+             <div>
+              <input type="email" name="email" placeholder="Enter Email" required="" autocapitalize="off" value="admin@gmail.com">
+              <input type="password" name="password" placeholder="Enter Password" required="" autocapitalize="off" value="12345">
+              <button type="submit">SUBMIT</button>
+              </div>
+             </form>
+        </div>
+    </section>
+   
+</body>
+<script>
+   // window.onload = alert("email: admin@gmail.com \npassword: 12345");
+    
+    
+</script>
+</html>

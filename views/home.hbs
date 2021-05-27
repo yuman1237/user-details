@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="sass/nav.css"/>
+    <link rel="stylesheet" type="text/css" href="sass/home.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css
+    ">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <div  class="container">
+        <ul>
+            <li> <a href="/home"> Home</a></li>
+            <li>About</li>
+            <li>Options</li>
+            <li> <a href="/">Logout</a> </li>
+        
+          
+        </ul>
+        </div>
+    </nav>
+      <section>
+        <div class="container">
+     
+   
+
+              <button onclick="openModelBox();">Add User</button>
+  <table id="someTable">
+    <thead>
+        <tr>
+            <th >S NO.</th>
+            <th >USER ID</th>
+            <th >FIRST NAME</th>
+            <th >LAST NAME</th>
+            <th>EMAIL</th>
+            <th>D.O.B</th>
+            <th>GENDER</th>
+            <th>PHONE NO.</th>
+            <th>ACTIONS</th>
+
+
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    
+    
+    </tbody>
+</table>
+          </div>
+      </section>
+
+        <div class="model-box-background">
+        <form class="model-box" action="/api/createuser" method="POST">
+            <div class="heading">
+                <h2>ADD USER</h2>
+            </div>
+            <div class="main-form">
+                 <div class="label-input">
+                     <label for="">First Name</label>
+                     <input type="text" name="firstname" required="" minlength="3" maxlength="15" autocomplete="off">
+                 </div>
+                 <div class="label-input">
+                     <label for="">Last Name</label>
+                     <input type="text" name="lastname" required="" minlength="3" maxlength="15" autocomplete="off">
+                 </div>
+                 <div class="label-input">
+                     <label for="">Email</label>
+                     <input type="email" name="email" required="" autocomplete="off">
+                 </div>
+                 <div class="label-input">
+                     <label for="">Gender</label>
+                    <select name="gender"  required="" autocomplete="off">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                  
+                </select>
+                 </div>
+                 <div class="label-input">
+                     <label for="">Date of birth</label>
+                     <input type="date" name="dob" required="" autocomplete="off" max="2005-01-01" id="date">
+                 </div>
+            
+                 <div class="label-input">
+                     <label for="">Phone Number</label>
+ 
+                     <input  maxlength="10" data-rule-maxlength="10" name="pnumber" required="" autocomplete="off" type="number"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength); this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                 </div>
+               
+              
+            </div>
+            <div class="button-group">
+                <button type="button" class="danger" onclick="closeModelBox()">Cancel</button>
+                <button id="createScheduleSubmitBtn" class="success" type="submit" >Submit</button>
+            </div>
+        </form>
+    </div>
+     
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+      const ModelBoxBg = document.getElementsByClassName("model-box-background")[0];
+    
+
+        const ModelBox = document.getElementsByClassName("model-box")[0];
+       
+       
+
+        function closeModelBox() {
+            ModelBox.style.animation = "none)";
+            ModelBox.style.transform = "scale(0)";
+            setTimeout(() => {
+                ModelBoxBg.style.display = "none";
+            }, 100);
+        }
+        function openModelBox() {
+            ModelBoxBg.style.display = "flex";
+            ModelBox.style.transform = "scale(1)";
+         
+        };
+     
+        // fetching the data
+        window.onload = getUsers();
+         
+         const tbody = document.querySelector("tbody");
+      
+      async  function getUsers(){
+           let result = fetch("/api/users");
+          
+                  await  result.then(res =>
+            res.json()).then(user => {
+                user.forEach((u,i)=>{
+                    const tr =document.createElement("tr");
+                   const data=` 
+            <td><p >${i+1}</p></td>
+            <td><p >${u.user_id}</p></td>
+            <td><p class="name">${u.firstname}</p></td>
+            <td><p class="name">${u.lastname}</p></td>
+            <td><p>${u.email}</p></td>
+            <td><p>${ moment(u.dob).format("Do MMM YYYY") }</p></td>
+            <td><p>${u.gender}</p></td>
+            <td><p>${u.pnumber}</p></td>
+           <td><div class="action"><i class="fas fa-edit" onclick="window.location.href='/user?id=${u._id}'"></i><i class="fas fa-trash-alt" onclick="deleteUser('${u._id}')"></i></div></td>
+           
+             `
+               tr.innerHTML = data;
+              tbody.appendChild(tr);
+                })
+            })
+       
+         }
+
+
+   async  function deleteUser(id){
+        
+      try {
+        await axios.delete(`/api/delete/user/${id}`);
+           location.reload();
+        } catch (errors) {
+        console.error(errors);
+         }
+
+        }
+</script>
+</html>

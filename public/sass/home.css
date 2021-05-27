@@ -1,0 +1,305 @@
+body {
+  background-color: #dddddd;
+}
+
+body section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3rem 6rem;
+}
+
+body section .container {
+  max-width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body section .container button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #136313;
+  margin-bottom: 1rem;
+  border-radius: 1.2rem;
+  cursor: pointer;
+}
+
+body section .container button:hover {
+  opacity: 0.5;
+}
+
+body section .container table {
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.model-box-background,
+.model-box-background-edit {
+  background: #0009;
+  z-index: 13;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.model-box,
+.model-box-edit {
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: 90%;
+  width: 50rem;
+  background-color: #f8f8f8;
+  -webkit-transition: -webkit-transform 0.3s ease-in;
+  transition: -webkit-transform 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in;
+  -webkit-animation: grow 0.3s ease-out;
+          animation: grow 0.3s ease-out;
+}
+
+.model-box .heading,
+.model-box-edit .heading {
+  background-color: #d8d8d8;
+  border-bottom: 1px solid black;
+}
+
+.model-box .heading h2,
+.model-box-edit .heading h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.model-box .main-form,
+.model-box-edit .main-form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.model-box #date,
+.model-box-edit #date {
+  padding: 0.9rem;
+}
+
+.model-box label,
+.model-box-edit label {
+  font-size: 1.2rem;
+  font-family: nexafont-bold;
+  color: var(--dark-blue);
+  padding: 0.5rem 0;
+}
+
+.model-box select,
+.model-box-edit select {
+  width: 100%;
+  padding: 1rem;
+  border: 3px solid grey;
+}
+
+.model-box select:hover,
+.model-box-edit select:hover {
+  border: 3px solid blue;
+}
+
+.model-box select:focus,
+.model-box-edit select:focus {
+  border: 3px solid blue;
+}
+
+.model-box .label-input,
+.model-box-edit .label-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.model-box input,
+.model-box-edit input {
+  border: 3px solid grey;
+  padding: 1rem;
+  outline: none;
+}
+
+.model-box input:focus,
+.model-box-edit input:focus {
+  border: 3px solid #3131d8;
+}
+
+.model-box input:hover,
+.model-box-edit input:hover {
+  border: 3px solid #3131d8;
+}
+
+.model-box .half-inputs,
+.model-box-edit .half-inputs {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  grid-gap: 1rem;
+}
+
+.model-box .button-group,
+.model-box-edit .button-group {
+  padding: 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  grid-gap: 1rem;
+}
+
+.model-box .button-group .danger,
+.model-box-edit .button-group .danger {
+  background-color: #c50606;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.model-box .button-group .danger:hover,
+.model-box-edit .button-group .danger:hover {
+  opacity: 0.5;
+}
+
+.model-box .button-group .success,
+.model-box-edit .button-group .success {
+  background-color: #136313;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.model-box .button-group .success:hover,
+.model-box-edit .button-group .success:hover {
+  opacity: 0.5;
+}
+
+@-webkit-keyframes grow {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes grow {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.model-box > div {
+  padding: 0.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table thead {
+  border: 1px solid #3131d8;
+  background-color: #3131d8;
+}
+
+table thead tr th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+  color: white;
+}
+
+table tbody tr {
+  border-bottom: 1px solid #858585;
+}
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
+
+table tbody tr td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.action .fa-trash-alt {
+  color: #c50606;
+}
+
+.action .fa-trash-alt:hover {
+  opacity: 0.5;
+}
+
+.action .fa-edit:hover {
+  opacity: 0.5;
+}
+
+.name {
+  text-transform: capitalize;
+}
+/*# sourceMappingURL=home.css.map */
